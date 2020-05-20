@@ -1,5 +1,6 @@
 body{
-    font-family: 'Arimo', 'sans serif'!important;
+    font-family: 'Arimo', 'sans serif';
+    font-size: large!important
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -14,6 +15,12 @@ a:visited {
   color: rgb(174, 73, 233);
 }
 
-.dailytemp{
-    font-size: large
+img{
+    display: block!important;
+    margin: auto!important
+}
+
+ul {
+ margin-left:0px;
+ padding-left:0px
 }

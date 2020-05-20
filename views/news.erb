@@ -23,47 +23,54 @@
     
     <body>
 
-        <div class="container mt-5">
-            <div class="row mt-5">    
-                <h1><center>Weather</center></h1>
+        <div class="container mt-5 justify-content-center">
+            <div class="row mt-5 justify-content-center">    
+                <h1 class="text-center">Upcoming Weather</h1>
+            </div>
+            <div class="row mt-5 justify-content-center">
+                <h2>Today's Weather</h2>
             </div>
             <div class="row mt-5">
-                <h2><center>Today's Weather</center></h2>
-            </div>
-            <div class="row mt-5">
-                <div class="col-sm-4">
-                    <p><center>Current Temperature and Conditions</center></p>
+                <div class="col-sm-6 text-center">
+                    <h4>Current Conditions</h4>
                     <p class="dailytemp"> <%= @forecast["current"]["temp"].round(0) %> °F </p>
                     <img src= "http://openweathermap.org/img/wn/<%= @forecast["daily"][0]["weather"][0]["icon"] %>@2x.png">
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-6 text-center">
                     <ul style="list-style-type:none;">
+                        <li><h4 class="dailytemp">Daily Overview</h4></li>
                         <li><p class="dailytemp"> Today's High: <%= @forecast["daily"][0]["temp"]["max"].round(0) %> °F </p></li>
                         <li><p class="dailytemp"> Today's Low: <%= @forecast["daily"][0]["temp"]["min"].round(0) %> °F </p></li>
-                        <li><p class="dailytemp"> Today's Conditions: <%= @forecast["daily"][0]["weather"][0]["description"] %></p></li>
+                        <li><p class="dailytemp"> Today's Conditions: <%= @forecast["daily"][0]["weather"][0]["description"].capitalize() %></p></li>
+                        <li><p class="dailytemp"> Bring an umbrella? <%= @forecast["daily"][0]["weather"][0]["main"]=="Rain"%> </p></li>
                     </ul>
                 </div>
             </div>
-            <div class="row mt-5">
-                <h2><center>This Week's Forecast</center></h2>
+            <div class="row my-5 justify-content-center">
+                <h2 class="text-center">This Week's Forecast</h2>
             </div>
-            <div class="row">
+            <div class="row text-center">
+                <% day_label_library = ["Tomorrow", "The Next Day", "The Day After"] %>
+                <% dll_index_counter = 0 %>
                 <% for day in @forecast["daily"][1,3]%>
                     <div class="col-sm-4">
                         <ul style="list-style-type:none;">
-                            <li><p class="dailytemp"> Daily high: <%= day["temp"]["max"].round(0) %> °F </p></li>
-                            <li><p class="dailytemp"> Daily low: <%= day["temp"]["min"].round(0) %> °F </p></li>
+                            <li><h4> <%= day_label_library[dll_index_counter] %></h4></li>
+                            <li><p class="dailytemp"> Daily High: <%= day["temp"]["max"].round(0) %> °F </p></li>
+                            <li><p class="dailytemp"> Daily Low: <%= day["temp"]["min"].round(0) %> °F </p></li>
                             <li><img src= "http://openweathermap.org/img/wn/<%= day["weather"][0]["icon"] %>@2x.png"></li>
                         </ul>
                     </div>
+                    <% dll_index_counter += 1 %>
                 <% end %>
             </div>
         </div>
+
         <div class="container mt-5">
-            <h1><center>Today's Headlines</center></h1>    
+            <h1 class="text-center mb-5">Today's Headlines</h1>    
             <ul style="list-style-type:none;">
                 <% for story in @news["articles"][0,10] %>
-                    <li><p> <%= story["title"] %> | </p><a href="<%= story["url"]%>">Read it now ►</a></li>
+                    <li><p> <%= story["title"] %> | <a href="<%= story["url"]%>"><u>Read it now ►</u></a></p></li>
                 <% end %>
             </ul>
         </div>
