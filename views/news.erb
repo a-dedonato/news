@@ -24,26 +24,35 @@
     <body>
 
         <div class="container mt-5">
-            <h1>Weather</h1>
-            <div class="row">
-                <h2>Today's Weather</h2>
-                <p> Today, the high is <%= @forecast["daily"][0]["temp"]["max"] %> *F and the conditions 
-                    include <%= @forecast["daily"][0]["weather"]["description"] %> <p>
-            <div class="row">
+            <div class="row mt-5">    
+                <h1><center>Weather</center></h1>
+            </div>
+            <div class="row mt-5">
+                <h2><center>Today's Weather</center></h2>
+            </div>
+            <div class="row mt-5">
+                <p><center>Today, the high is <%= @forecast["daily"][0]["temp"]["max"].round(0) %> °F and the conditions 
+                    include <%= @forecast["daily"][0]["weather"][0]["description"] %></center> <p>
+            </div>
+            <div class="row mt-5">
                 <h2> This Week's Forecast </h2>
+            </div>
+            <div class="row">
                 <% for day in @forecast["daily"][1,3]%>
-                    <div class="col-md-4">
-                        <ul>
-                            <li><p class="dailytemp"> <%= day["temp"]["max"] %> *F </p></p>
-                            <li><img src= "http://openweathermap.org/img/wn/<%= day["weather"]["icon"] %>@2x.png"></li>
+                    <div class="col-sm-4">
+                        <ul style="list-style-type:none;">
+                            <li><p class="dailytemp"> <%= day["temp"]["max"].round(0) %> °F </p></p>
+                            <li><img src= "http://openweathermap.org/img/wn/<%= day["weather"][0]["icon"] %>@2x.png"></li>
                         </ul>
+                    </div>
                 <% end %>
-
+            </div>
+        </div>
         <div class="container mt-5">
-            <h1>Today's Headlines</h1>     
-            <ul>
+            <h1>Today's Headlines</h1>    
+            <ul style="list-style-type:none;">
                 <% for story in @news["articles"][0,10] %>
-                    <li><p><%= @news["title"] %></p><a href= <%= @news["url"] %>Read it now></a></li>
+                    <li><p> <%= story["title"] %> | </p><a href="<%= story["url"]%>">Read it now ►</a></li>
                 <% end %>
             </ul>
         </div>
