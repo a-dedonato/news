@@ -42,7 +42,6 @@
                         <li><p class="dailytemp"> Today's High: <%= @forecast["daily"][0]["temp"]["max"].round(0) %> °F </p></li>
                         <li><p class="dailytemp"> Today's Low: <%= @forecast["daily"][0]["temp"]["min"].round(0) %> °F </p></li>
                         <li><p class="dailytemp"> Today's Conditions: <%= @forecast["daily"][0]["weather"][0]["description"].capitalize() %></p></li>
-                        <li><p class="dailytemp"> Bring an umbrella? <%= @forecast["daily"][0]["weather"][0]["main"]=="Rain"%> </p></li>
                     </ul>
                 </div>
             </div>
