@@ -7,7 +7,7 @@
 
     <!-- Google Fonts -->
     <!-- Swap out "Roboto" for the font(s) you want to use -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Merriweather&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
@@ -18,13 +18,35 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title>News</title>
-  </head>
-  <body>
+    <title>News and Weather</title>
+    </head>
+    
+    <body>
 
-    <div class="container mt-5">
-      <h1>News</h1>
-    </div>
+        <div class="container mt-5">
+            <h1>Weather</h1>
+            <div class="row">
+                <h2>Today's Weather</h2>
+                <p> Today, the high is <%= @forecast["daily"][0]["temp"]["max"] %> *F and the conditions 
+                    include <%= @forecast["daily"][0]["weather"]["description"] %> <p>
+            <div class="row">
+                <h2> This Week's Forecast </h2>
+                <% for day in @forecast["daily"][1,3]%>
+                    <div class="col-md-4">
+                        <ul>
+                            <li><p class="dailytemp"> <%= day["temp"]["max"] %> *F </p></p>
+                            <li><img src= http://openweathermap.org/img/wn/<%= day["weather"]["icon"] %>@2x.png</li>
+                        </ul>
+                <% end %>
+
+        <div class="container mt-5">
+            <h1>Today's Headlines</h1>     
+            <ul>
+                <% for story in @news["articles"][0,10] %>
+                    <li><p><%= @news["title"] %></p><a href= <%= @news["url"] %>Read it now></a></li>
+                <% end %>
+            </ul>
+        </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

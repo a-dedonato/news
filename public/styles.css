@@ -1,0 +1,19 @@
+body{
+    font-family: 'Arimo', 'sans serif'!important;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: "Merriweather", "serif";
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: rgb(174, 73, 233);
+}
+
+.dailytemp{
+    font-size: large
+}
