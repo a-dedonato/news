@@ -31,8 +31,18 @@
                 <h2><center>Today's Weather</center></h2>
             </div>
             <div class="row mt-5">
-                <p><center>Today, the high is <%= @forecast["daily"][0]["temp"]["max"].round(0) %> °F and the conditions 
-                    include <%= @forecast["daily"][0]["weather"][0]["description"] %></center> <p>
+                <div class="col-sm-4">
+                    <p> Current Temperature </p>
+                    <p class="dailytemp"> <%= @forecast["current"]["temp"].round(0) %> °F </p>
+                    <img src= "http://openweathermap.org/img/wn/<%= @forecast["daily"][0]["weather"][0]["icon"] %>@2x.png">
+                </div>
+                <div class="col-sm-8">
+                    <ul style="list-style-type:none;">
+                        <li><p class="dailytemp"> Today's High: <%= @forecast["daily"][0]["temp"]["max"].round(0) %> °F </p></li>
+                        <li><p class="dailytemp"> Today's Low: <%= @forecast["daily"][0]["temp"]["min"].round(0) %> °F </p></li>
+                        <li><p class="dailytemp"> Today's Conditions: <%= @forecast["daily"][0]["weather"][0]["description"] %></p></li>
+                    </ul>
+                </div>
             </div>
             <div class="row mt-5">
                 <h2> This Week's Forecast </h2>
@@ -41,7 +51,8 @@
                 <% for day in @forecast["daily"][1,3]%>
                     <div class="col-sm-4">
                         <ul style="list-style-type:none;">
-                            <li><p class="dailytemp"> <%= day["temp"]["max"].round(0) %> °F </p></p>
+                            <li><p class="dailytemp"> Daily high: <%= day["temp"]["max"].round(0) %> °F </p></p></li>
+                            <li><p class="dailytemp"> Daily low: <%= day["temp"]["min"].round(0) %> °F </p></p></li>
                             <li><img src= "http://openweathermap.org/img/wn/<%= day["weather"][0]["icon"] %>@2x.png"></li>
                         </ul>
                     </div>
