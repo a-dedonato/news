@@ -32,7 +32,7 @@
             </div>
             <div class="row mt-5">
                 <div class="col-sm-4">
-                    <p> Current Temperature </p>
+                    <p><center>Current Temperature and Conditions</center></p>
                     <p class="dailytemp"> <%= @forecast["current"]["temp"].round(0) %> °F </p>
                     <img src= "http://openweathermap.org/img/wn/<%= @forecast["daily"][0]["weather"][0]["icon"] %>@2x.png">
                 </div>
@@ -45,14 +45,14 @@
                 </div>
             </div>
             <div class="row mt-5">
-                <h2> This Week's Forecast </h2>
+                <h2><center>This Week's Forecast</center></h2>
             </div>
             <div class="row">
                 <% for day in @forecast["daily"][1,3]%>
                     <div class="col-sm-4">
                         <ul style="list-style-type:none;">
-                            <li><p class="dailytemp"> Daily high: <%= day["temp"]["max"].round(0) %> °F </p></p></li>
-                            <li><p class="dailytemp"> Daily low: <%= day["temp"]["min"].round(0) %> °F </p></p></li>
+                            <li><p class="dailytemp"> Daily high: <%= day["temp"]["max"].round(0) %> °F </p></li>
+                            <li><p class="dailytemp"> Daily low: <%= day["temp"]["min"].round(0) %> °F </p></li>
                             <li><img src= "http://openweathermap.org/img/wn/<%= day["weather"][0]["icon"] %>@2x.png"></li>
                         </ul>
                     </div>
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="container mt-5">
-            <h1>Today's Headlines</h1>    
+            <h1><center>Today's Headlines</center></h1>    
             <ul style="list-style-type:none;">
                 <% for story in @news["articles"][0,10] %>
                     <li><p> <%= story["title"] %> | </p><a href="<%= story["url"]%>">Read it now ►</a></li>
